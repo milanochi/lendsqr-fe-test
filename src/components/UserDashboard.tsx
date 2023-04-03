@@ -90,7 +90,7 @@ const UserDashboard = () => {
               </tr>
             </thead>
             {
-            currentItems.map((user, index) =>  <UserDashboardDisplay key={index} {...user} actions={actions} setActions={setActions}/>)
+            currentItems.map((user, index) =>  <UserDashboardDisplay key={index} users={user} actions={actions} setActions={setActions}/>)
             }
           </table>
           {
