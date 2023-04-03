@@ -12,7 +12,7 @@ const UserDashboard = () => {
   const [submit, setSubmit] = useState(false)
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(false)
-  const [actions, setActions] = useState(true)
+  const [actions, setActions] = useState(false)
 
   const [currentItems, setCurrentItems] = useState([])
   const [pageCount, setPageCount] = useState(0)

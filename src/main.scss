@@ -19,7 +19,7 @@ $primary-font-color: #545F7D;
  }
   .login{
       width: 100%;
-     
+      background-color: white;
     .login__inner{
         width: 100%;
         display: flex;
@@ -126,7 +126,7 @@ $primary-font-color: #545F7D;
           top:0;
           right: 0;
           left: 0;
-          z-index: 100;
+          z-index: 100000;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -380,7 +380,7 @@ main{
                   padding-left:30px;
                   padding-right:30px;
                   padding: 20px;
-                  z-index: 100;
+                  z-index: 10000;
                   overflow: hidden;
                   form{
                       display: flex;
