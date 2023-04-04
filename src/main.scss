@@ -659,8 +659,11 @@ main{
 }
 }
 @media (max-width: 900px) {
-          .login{
-            display: none
+          .login__left{
+            display: none;
+          img {
+             display : none;
+          }
           }
     .menu{
         
