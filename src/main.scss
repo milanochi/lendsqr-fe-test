@@ -125,14 +125,16 @@ $primary-font-color: #545F7D;
   .dashboard{
       height:100% ;
       font-family: Work Sans;
+      position: relative;
       nav{
           background-color: white;
           padding:20px 30px;
           position: sticky;
-          top:0;
+          width: 100%;
+          top: 0;
           right: 0;
           left: 0;
-          z-index: 100000;
+          z-index: 100;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -321,9 +323,9 @@ main{
             table {
                 border-collapse: collapse;
                 width: 100%;
-                font-size: 14px;
                 color: $primary-color;
                 position: relative;
+                
                 td, thead {
                     text-align: left;
                     padding: 8px; 
@@ -346,11 +348,13 @@ main{
                       }
                   }
                   tbody{
-                    td{
+            
+                      tr{
                         border-bottom: 1px solid #213F7D1A;
+                      
+                    td{
                         font-weight: 400;
                         font-size: 14px;
-                       
                         .dots{
                             height: 14px;
                             display: flex;
@@ -360,6 +364,7 @@ main{
                          }          
                      
                       }
+                    }
                        .status{
                             background-color: rgba(84, 95, 125, 0.116);
                             color: $primary-color;
@@ -370,6 +375,7 @@ main{
                             text-align: center;
                             height: 30px;
                         }
+                    
                   }
                
               }
@@ -673,13 +679,14 @@ main{
         width: 100%;
         .login__form-inner{
             height: 70vh;
-            
-        }
-        input{
+            input{
+            font-size: 1.2rem;
             &::placeholder{
-            font-size: 1.5rem;
+                font-size: .8rem;
+            }
             }
         }
+      
     }
 }
     .menu{
@@ -697,20 +704,28 @@ main{
             
             .main-inner{
                 width:100%;
-                left: 5%;
+                left: 0;
+                
                 .main-section{
-                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-columns: repeat(1, 1fr);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content:center ;
                 }
             }
-            
+            .info{
+                overflow-x: scroll;
+                table{
+                    thead{
+                        td{
+                            font-size: 7px;
+                        }
+                    }
+                }
+            }
         }
-        td{
-            font-size: .5em;
-        }
-        thead{
-            font-size: 2px;
-        }
-        
+     
        .paginate{
            display: flex;
            flex-direction: column;
@@ -719,7 +734,7 @@ main{
        }
        .user{
            .user__inner{
-               left: 0;
+               left: 5%;
                width: 100%;
            }
        }
