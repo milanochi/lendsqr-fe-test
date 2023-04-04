@@ -659,6 +659,9 @@ main{
 }
 }
 @media (max-width: 900px) {
+          .login__left{
+            display: none
+          }
     .menu{
         
         display: none;
