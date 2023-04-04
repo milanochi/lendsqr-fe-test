@@ -15,32 +15,33 @@ const submitDetails = ( e:any ) => {
     
 }
   return (
-    <div>
+    
         <div className='login'>
-            <div className='login__inner'>
                 <div className='login__left'>
                     <div>
                          <img src={Logo} className='logo' alt='logoImg' />
                          <img src={Illustration} className='animation' alt='img' />
                     </div>
                 </div>
-                <form className='login__form' onSubmit={submitDetails}>
-                    <div className='login__form-inner'>
+                <section className='login__form' onSubmit={submitDetails}>
+                    <form className='login__form-inner'>
                         <div className='login__form-header'>
                             <h1>Welcome!</h1>
                             <p>Enter details to login.</p>
                         </div>
                         <div className='login__form-control'>
-                            <input onChange={e => setEmail(e.target.value)} value={email} placeholder='Email' />
-                            <input onChange={e => setPassword(e.target.value)} value={password} placeholder='Password' />
+                            <input onChange={e => setEmail(e.target.value)} required value={email} placeholder='Email' />
+                            <div style={{position:'relative'}} >
+                            <input style={{width: '100%', position: 'relative'}} onChange={e => setPassword(e.target.value)} required value={password} placeholder='Password' />
+                            <p style={{position : 'absolute',top:'14px', right:'2%', fontWeight:'400', fontSize:'10px', cursor:'pointer'}}>SHOW</p>
+                            </div>
                             <p>FORGOT PASSWORD?</p>
                             <button className='btn' type='submit'>LOG IN</button>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </section>
             </div>
-        </div>
-    </div>
+     
   )
 }
 
