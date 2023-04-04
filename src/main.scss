@@ -659,18 +659,19 @@ main{
 }
 }
 @media (max-width: 900px) {
-          .login__left{
+        .login__left{
             display: none;
           img {
              display : none;
           }
+         }
+          .login__form {
+          width: 100%;
           }
     .menu{
         
         display: none;
-    }
-
-    
+     }
     .dashboard{
         input{
             display: none;
