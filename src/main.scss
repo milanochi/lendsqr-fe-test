@@ -659,12 +659,15 @@ main{
 }
 }
 @media (max-width: 900px) {
+       .login__inner {
+         flex-direction: column:
         .login__left{
             display: none;
           img {
              display : none;
           }
          }
+        }
           .login__form {
           width: 100%;
           }
