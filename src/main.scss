@@ -672,8 +672,13 @@ main{
     .login__form{
         width: 100%;
         .login__form-inner{
-            height: 60vh;
+            height: 70vh;
             
+        }
+        input{
+            &::placeholder{
+            font-size: 1.5rem;
+            }
         }
     }
 }
