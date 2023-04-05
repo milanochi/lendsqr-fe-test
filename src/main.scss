@@ -147,9 +147,12 @@ $primary-font-color: #545F7D;
             .logo{
                 height: 25px;
             }
-            input{
-                padding: 10px 0px 10px 8px;
+            .nav-input{
+                position: relative;
                 width: 300px;
+            input{
+                padding: 10px 15px 10px 8px;
+                width: 100%;
                 border-radius: 5px;
                 appearance: none;
                 outline: none;
@@ -159,6 +162,7 @@ $primary-font-color: #545F7D;
                     font-size: .9em;
                 }
             }
+        }
           }
           .dashboard__nav-right{
             display: flex;
@@ -695,9 +699,24 @@ main{
      }
     .dashboard{
       nav{
-        input{
-            display: none;
-        }
+          padding: 20px 15px;
+          .nav-input{
+                max-width: 100px;
+                margin-left: 8px;
+                margin-right: 8px;
+                input{
+                    padding: 0;
+                    img{
+                        right: -5%;
+                    } 
+                 }
+            }
+            .dashboard__nav-user{
+                max-width: 50px;
+                span, img{
+                    display: none;
+                }
+            }
        }
       
          main{
@@ -705,7 +724,9 @@ main{
             .main-inner{
                 width:100%;
                 left: 0;
-                
+                h3{
+                  margin-left: 5rem;
+                }
                 .main-section{
                     grid-template-columns: repeat(1, 1fr);
                     display: flex;
