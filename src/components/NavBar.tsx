@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Logo from '/src/assets/logo.svg'
 import DropDown from '/src/assets/dropdown.svg'
 import Bell from '/src/assets/bell.svg'
-import Search from '/src/assets/dashboard/search.svg'
+import Search from '/src/assets/search.svg'
 
 const NavBar = () => {
 const [search, setSearch] = useState('')
