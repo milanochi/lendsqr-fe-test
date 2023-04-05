@@ -13,7 +13,7 @@ const [search, setSearch] = useState('')
                 <img src={Logo} className='logo' alt='logoImg' />
                 <div className='nav-input'>
                     <input value={search} onChange={e => setSearch(e.target.value)} placeholder='Search for anything'/>
-                     <img src={Search} style={{position:'absolute', top:'0', right:'0', bottom:'auto', background:'#39CDCC', padding:'12px 16px', borderTopRightRadius: '4px', borderBottomRightRadius:'4px'}} alt='search'/>
+                     <img src={Search} style={{position:'absolute', top:'0', right:'0', bottom:'auto', background:'#39CDCC', padding:'11px 14px', borderTopRightRadius: '4px', borderBottomRightRadius:'4px'}} alt='search'/>
                 </div>
              </div>
             <div className="dashboard__nav-right">

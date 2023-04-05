@@ -3,7 +3,7 @@ import { useState } from 'react'
 const UserFilter = () => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
-    const [date, setDate] = useState('')
+    const [date, setDate] = useState('Enter Date')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [organization, setOrganization] = useState('Lendsqr')
     const [status, setStatus] = useState('Active')
@@ -25,7 +25,7 @@ const UserFilter = () => {
                 </div>
                 <div>
                     <label>Date</label>
-                    <input value={date} type='date' placeholder='Date' onChange={e => setDate(e.target.value)}/>
+                    <input value={date} type='date' placeholder='Enter Date' onChange={e => setDate(e.target.value)}/>
                 </div>
                 <div>
                     <label>Phone Number</label>

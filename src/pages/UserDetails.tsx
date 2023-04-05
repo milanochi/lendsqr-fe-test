@@ -32,14 +32,15 @@ const UserDetails = () => {
             </div>
             <section>
               <div className='user__info'>
-                <div>
-                <img src={Avatar} alt='avatar' className='avatar'/>
+                <div style={{display:'flex', alignItems:'center'}}>
+                <img src={Avatar} alt='avatar' style={{marginRight:'8px'}} className='avatar'/>
+                  <div>
+                    <p>Grace Effiong</p>
+                    <small>LSQFf587g90</small>
                 </div>
-                <div>
-                  <p>Grace Effiong</p>
-                  <small>LSQFf587g90</small>
-                </div>
-                <div style={{lineHeight: '1.9', marginTop: '.6rem'}}>
+              </div>
+               
+                <div style={{lineHeight: '1.9', marginTop: '.6rem', textAlign:'center', borderLeft:'1px solid rgba(84, 95, 125, 0.2)', borderRight: '0.2px solid rgba(84, 95, 0.225, 0.2)'}}>
                   <small>Users Tier</small>
                   <span style={{display: 'block'}}>
                   <img src={Fstar} alt='star' /> 

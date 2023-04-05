@@ -151,7 +151,7 @@ $primary-font-color: #545F7D;
                 position: relative;
                 width: 300px;
             input{
-                padding: 10px 15px 10px 8px;
+                padding: 10px 3rem 10px 8px;
                 width: 100%;
                 border-radius: 5px;
                 appearance: none;
@@ -385,7 +385,7 @@ main{
               }
               .filter{
                   position: absolute;
-                  top: 10%;
+                  top: 8%;
                   left:2%;
                   background: #FFFFFF;
                   border: 1px solid rgba(84, 95, 125, 0.14);
@@ -421,6 +421,7 @@ main{
                         border-radius: 8px;
                         padding: 8px;
                         width: 100%;
+                        height: 100%;
                         outline: none;
                         margin-bottom: 2rem;
                         color: #213F7D;
@@ -535,22 +536,18 @@ main{
             border: 1px solid rgba(33, 63, 125, 0.06);
             box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
             border-radius: 4px;
-            height: 210px;
+            min-height: 210px;
             padding: 30px;
             margin-bottom: 2rem;
             position: relative;
             .user__info{
-                display: flex;
-                justify-content: space-between;
+                display: grid;
+                grid-template-columns: 0.9fr 0.5fr 1fr;
+                width: 700px;
+                height: 100%;
                 align-items: center;
-                width: 62%;
                 line-height: 1.5;
-                div:nth-child(3){
-                    border-right: 1px solid #21407d4b;
-                    border-left: 1px solid #21407d4b;
-                    padding: 0 25px;
-         
-                }
+                grid-gap: 10px;
                 p{
                     font-size: 22px;
                     color: #213F7D;
@@ -569,19 +566,20 @@ main{
                 position: absolute;
                 right: 0;
                 bottom: 0;
-                padding: 0px 35px; 
+               align-items: flex-end;
                 li{
-                padding: 10px 15px;
                 font-family: 'SF Compact Text', sans-serif; 
                 color: rgba(0, 0, 0, 0.8);
                 font-weight: 400; 
                 font-family: Work Sans;
-                font-size: 16px;
+                font-size: 14px;
                 font-weight: 400;
                 line-height: 19px;
                 letter-spacing: 0em;
                 text-align: center;
+                padding:  10px;
                 border-bottom: 2px solid white;
+                width: 100%;
 
                 &:hover{
                     color: #39CDCC;
@@ -705,7 +703,8 @@ main{
                 margin-left: 8px;
                 margin-right: 8px;
                 input{
-                    padding: 0;
+
+                    padding-right: 1rem;
                     img{
                         right: -5%;
                     } 
@@ -734,17 +733,26 @@ main{
                     align-items: center;
                     justify-content:center ;
                 }
-            }
-            .info{
-                overflow-x: scroll;
-                table{
-                    thead{
-                        td{
-                            font-size: 7px;
+                .info{
+                    overflow-x: scroll;
+                    table{
+                        thead{
+                            td{
+                                font-size: 9px;
+                            }
+                        }
+                        tbody{
+                            tr{
+                                td{
+                                font-size: 14px;
+                                line-height: 1.5;
+                                }
+                            } 
                         }
                     }
                 }
             }
+           
         }
      
        .paginate{
@@ -752,11 +760,13 @@ main{
            flex-direction: column;
            justify-content: flex-start;
            margin-top: 1rem;
+           padding: 0 15px;
        }
        .user{
            .user__inner{
                left: 5%;
                width: 100%;
+
            }
        }
     }
