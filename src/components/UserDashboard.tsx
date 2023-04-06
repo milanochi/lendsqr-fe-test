@@ -3,7 +3,6 @@ import Pagination from './Pagination'
 import UserDashboardDisplay from './UserDashboardDisplay'
 import UserFilter from './UserFilter'
 import Filter from '/src/assets/dashboard/Filter.svg'
-import ReactPaginate from 'react-paginate'
 import UserActions from './UserActions'
 
 
@@ -21,7 +20,7 @@ const UserDashboard = () => {
 
   const [userPerPage, setUserPerPage] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
   const Add = userPerPage.map(add => add)
-  const handleTotalPage = ({e} : any | number) => alert(userPerPage[e.target.value])
+  const handleTotalPage = ({ e } : any) => alert(userPerPage[e.target.value])
 
 
 
@@ -48,16 +47,16 @@ const UserDashboard = () => {
     const fetchUsers = async () => {
       setLoading(true)
       try{
-      const res = await fetch('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
-      if (res.ok) {
-      const data = await res.json()
-      return data
+        const res = await fetch('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
+        if (res.ok) {
+        const data = await res.json()
+        return data
+        }
+      }
+      catch(err){
+        console.log(err)
       }
     }
-    catch(err){
-      console.log(err)
-    }
-  }
   
   //SHOW FILTER
   const showFilter = () =>{
@@ -67,12 +66,6 @@ const UserDashboard = () => {
   if (loading) {
     return <h3 style={{color: '#213F7D', textAlign:'center'}}>LOADING...</h3>
   }
-  //GO TO USER DETAILS
-// const userDetails = () => {
-//       setActions(false)
-//       console.log('omo')
-//   }
- 
   return (
     <div>
        {/* MAIN DASHBOARD */}

@@ -12,18 +12,27 @@ const toUserDetails = ( e:any ) => {
     
 }
   return (
-    <div>
-        <ul style={{position:'absolute',top:'23%', right: '-3%', fontSize: '14px', backgroundColor: '#FFFFFF',boxShadow: '3px 5px 20px rgba(0, 0, 0, 0.04)' ,color: '#545F7D', borderRadius: '4px' ,display:'flex', lineHeight: '2' ,flexDirection: 'column', alignItems:'center' ,justifyContent: 'center', height: '130px', listStyle:'none', width: '180px'}}>
-          <li style={{cursor:'pointer'}} onClick={toUserDetails}>
-            <img src={Eye} style={{marginRight: '5px'}}alt='activate'/>
-            View details</li>
-          <li style={{cursor:'pointer'}} >
-            <img src={Blacklist} alt='activate'/>
-            BlackList User</li>
-          <li style={{cursor:'pointer'}} >
-            <img src={User} alt='user'/>
-            Activate User</li>
-        </ul>
+    <div style={{position:'absolute',top:'23%', right: '-3%', fontSize: '14px', backgroundColor: '#FFFFFF',boxShadow: '3px 5px 20px rgba(0, 0, 0, 0.04)' ,color: '#545F7D', borderRadius: '4px', height: '130px', listStyle:'none', width: '180px'}}>
+        <div style={{display:'flex',justifyContent:'center',alignItems:'center',lineHeight:'2', height:'100%'}}>
+          <ul style={{marginRight:'5px', cursor:'pointer', textAlign:'center'}}>
+            <li style={{listStyle:'none'}} onClick={toUserDetails}>
+              <img src={Eye} alt='activate'/>
+            </li>
+            <li style={{listStyle:'none'}} >
+              <img src={Blacklist} alt='activate'/>
+            </li>
+            <li style={{listStyle:'none'}} >
+              <img src={User} alt='user'/>
+            </li>
+          </ul>
+
+          <ul style={{ cursor:'pointer'}}>
+            <li style={{listStyle:'none'}} onClick={toUserDetails}>View Details</li>
+            <li style={{listStyle:'none'}}>Blacklist User</li>
+            <li style={{listStyle:'none'}}>Activate User</li>
+          </ul>
+        </div>
+       
     </div>
   )
 }

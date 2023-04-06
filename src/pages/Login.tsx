@@ -7,7 +7,7 @@ const Login = () => {
 
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
-const [togglePassword, setTogglePassword] = useState('text')
+const [togglePassword, setTogglePassword] = useState('password')
 const navigate = useNavigate()
 //SUBMIT FORM
 const submitDetails = ( e:any ) => {
@@ -17,11 +17,11 @@ const submitDetails = ( e:any ) => {
 }
 //TOGGLE BUTTON
 const toggleButton = () => {
-    if(togglePassword === 'text') {
-        setTogglePassword('password')
+    if(togglePassword === 'password') {
+        setTogglePassword('text')
     }
     else {
-        setTogglePassword('text')
+        setTogglePassword('password')
     }
 
 }

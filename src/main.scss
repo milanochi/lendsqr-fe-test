@@ -561,12 +561,14 @@ main{
             ul{
                 display: flex;
                 list-style: none;
+                padding: 0 25px;
                 justify-content: space-between;
                 width: 100%;
                 position: absolute;
                 right: 0;
                 bottom: 0;
                align-items: flex-end;
+               flex: 1;
                 li{
                 font-family: 'SF Compact Text', sans-serif; 
                 color: rgba(0, 0, 0, 0.8);
@@ -579,7 +581,6 @@ main{
                 text-align: center;
                 padding:  10px;
                 border-bottom: 2px solid white;
-                width: 100%;
 
                 &:hover{
                     color: #39CDCC;
@@ -766,8 +767,35 @@ main{
            .user__inner{
                left: 5%;
                width: 100%;
+               .user__header{
+
+                   div{
+                    display: flex;
+                    align-items: center;
+                    width: 350px;
+                       h2{
+                       font-size: 1rem;
+                   }
+                   span{
+                       width: 220px;
+                    button{
+                       padding: 6px;
+                       font-size: .6em;
+                    }
+                }
+               }
+            }
+               
 
            }
+           .user__details{
+            .user__details-inner{
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .user__details-inner2{
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
        }
     }
    
