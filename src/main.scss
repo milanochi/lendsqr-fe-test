@@ -129,11 +129,9 @@ $primary-font-color: #545F7D;
       nav{
           background-color: white;
           padding:20px 30px;
-          position: sticky;
+          position: fixed;
           width: 100%;
           top: 0;
-          right: 0;
-          left: 0;
           z-index: 100;
           display: flex;
           align-items: center;
@@ -207,13 +205,13 @@ $primary-font-color: #545F7D;
     background-color: white;
     min-height: 100vh;
     position: fixed;
-    top:10%;
+    top:0;
     left:0;
     bottom: 0;
     width: 250px;
     z-index: 1;
     overflow-y: scroll;
-    padding: 0 20px;
+    padding: 4.5rem 20px;
     box-shadow: none;
   
     .menu__inner{
@@ -355,6 +353,9 @@ main{
             
                       tr{
                         border-bottom: 1px solid #213F7D1A;
+                        &:last-child{
+                            border-bottom: none;
+                        }
                       
                     td{
                         font-weight: 400;
@@ -493,7 +494,7 @@ main{
             overflow-x: hidden;
             min-height: 100vh;
         .user__header{
-            padding-top: 3.8rem;
+            margin-top: 8rem;
             margin-bottom: 2rem;
          
             p{

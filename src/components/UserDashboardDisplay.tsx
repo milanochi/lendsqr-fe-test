@@ -1,28 +1,24 @@
 import Dots from '/src/assets/dashboard/dots.svg'
 import { ValidTime } from '../utilities/ValidTime'
 import { ValidPhoneNumber } from '../utilities/ValidPhoneNumber'
+import UserActions from './UserActions'
 
+type Users = {
+  users: any
+  setActions: (T: boolean) => void
+  actions: boolean
+  index?: number
+  }
 
-
-// type Users = {
-//     id: number
-//     orgName: string
-//     userName: string
-//     email: string
-//     phoneNumber: string
-//     createdAt: string
-//     status: string
-//     setActions: any
-//     actions: any
-//   }
-const UserDashboardDisplay = ({users,  setActions, actions} : any ) => {
+const UserDashboardDisplay = ({users, setActions, actions} : Users ) => {
 //GO TO USER DETAILS
-const userDetails = () => {
-      setActions(!actions)
+const userDetails = (id: number | string) => {
+  if(users.id === id) {
+    setActions(!actions)
+  }
+      console.log('delete', id)
   }
   return ( 
-  
-    <tbody>
         <tr>
             <td>{users.orgName}</td>
             <td>{users.userName}</td>
@@ -30,10 +26,12 @@ const userDetails = () => {
             <td>{ValidPhoneNumber(users.phoneNumber)}</td>
             <td>{ValidTime(users.createdAt)}</td>
             <td><span className='status'>Active</span></td>
-            <td><img src={Dots} className='dots' onClick={userDetails} alt='dots'/></td>
+            {/* <td><img src={Dots} className='dots' onClick={() => userDetails(users.id)} alt='dots'/>
+            {
+            actions && <UserActions/>
+            }
+            </td> */}
         </tr>
-    </tbody>
-
   )
 }
 

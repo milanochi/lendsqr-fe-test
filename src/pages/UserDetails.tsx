@@ -1,4 +1,3 @@
-import { Navigate } from 'react-router'
 import Menu from '../components/Menu'
 import NavBar from '../components/NavBar'
 import Avatar from '/src/assets/user/avatar.svg'
@@ -9,7 +8,7 @@ import { useNavigate } from 'react-router'
 
 const UserDetails = () => {
   const nav = useNavigate()
-
+ 
   return (
     <div className='dashboard'> 
       <NavBar />
@@ -37,7 +36,7 @@ const UserDetails = () => {
                   <div>
                     <p>Grace Effiong</p>
                     <small>LSQFf587g90</small>
-                </div>
+                  </div>
               </div>
                
                 <div style={{lineHeight: '1.9', marginTop: '.6rem', textAlign:'center', borderLeft:'1px solid rgba(84, 95, 125, 0.2)', borderRight: '0.2px solid rgba(84, 95, 0.225, 0.2)'}}>

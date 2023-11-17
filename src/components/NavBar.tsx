@@ -11,10 +11,10 @@ const [search, setSearch] = useState('')
         <nav>
             <div className="dashboard__nav-left">
                 <img src={Logo} className='logo' alt='logoImg' />
-                <div className='nav-input'>
+                {/* <div className='nav-input'>
                     <input value={search} onChange={e => setSearch(e.target.value)} placeholder='Search for anything'/>
                      <img src={Search} style={{position:'absolute', top:'0', right:'0', bottom:'auto', background:'#39CDCC', padding:'11px 14px', borderTopRightRadius: '4px', borderBottomRightRadius:'4px'}} alt='search'/>
-                </div>
+                </div> */}
              </div>
             <div className="dashboard__nav-right">
                 <div className='dashboard__nav-notify'>
@@ -23,7 +23,7 @@ const [search, setSearch] = useState('')
             </div>
              <div className='dashboard__nav-user'>
                 <div className='dashboard__user-img'></div>
-                <span>Adedeji</span><img src={DropDown} alt='dropdown'/>
+                <span>Jane Doe</span><img src={DropDown} alt='dropdown'/>
             </div>
             </div>
       </nav>

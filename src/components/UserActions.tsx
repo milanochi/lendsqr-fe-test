@@ -12,7 +12,7 @@ const toUserDetails = ( e:any ) => {
     
 }
   return (
-    <div style={{position:'absolute',top:'23%', right: '-3%', fontSize: '14px', backgroundColor: '#FFFFFF',boxShadow: '3px 5px 20px rgba(0, 0, 0, 0.04)' ,color: '#545F7D', borderRadius: '4px', height: '130px', listStyle:'none', width: '180px'}}>
+    <div style={{position:'relative', fontSize: '14px', backgroundColor: '#FFFFFF',boxShadow: '3px 5px 20px rgba(0, 0, 0, 0.04)' ,color: '#545F7D', borderRadius: '4px', height: '130px', listStyle:'none', width: '180px'}}>
         <div style={{display:'flex',justifyContent:'center',alignItems:'center',lineHeight:'2', height:'100%'}}>
           <ul style={{marginRight:'5px', cursor:'pointer', textAlign:'center'}}>
             <li style={{listStyle:'none'}} onClick={toUserDetails}>

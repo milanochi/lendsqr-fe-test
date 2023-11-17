@@ -7,7 +7,8 @@ export function ValidTime ( str  : string) {
         const year = date.getFullYear()
         let hrs = date.getHours()
         let mins: number | string = date.getMinutes()
-        let amPm = 'AM';
+        
+        let amPm: string = 'AM';
         (hrs > 12) ? amPm = 'PM' : amPm;
         (hrs === 0) ? hrs = 12 :
         (mins < 10) ?  mins = `0${mins}` : mins;
