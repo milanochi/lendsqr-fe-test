@@ -6,6 +6,7 @@ import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
 import Pagination from '../components/Pagination'
+import Table from '../components/Table';
 Chart.register(CategoryScale);
 
 const Subscriptions = () => {
@@ -149,6 +150,7 @@ const Subscriptions = () => {
                                 </div>
                             </div>
                         </section>
+                        <Table />
                         {/* <UserDashboard /> */}
                     </div>
                 </main>
