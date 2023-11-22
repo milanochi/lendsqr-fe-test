@@ -14,7 +14,9 @@ const NavBar = ({ page }: any) => {
 
         <nav>
             <div className="dashboard__nav-left">
-                <img src={Logo} className='logo' alt='logoImg' />
+                <div>
+                    <img src={Logo} className='logo' alt='logoImg' />
+                </div>
                 <div style={{ color: '#213F7D', textTransform: 'uppercase', fontSize: '.8em', fontWeight: '500' }}>{page}</div>
                 {/* <div className='nav-input'>
                     <input value={search} onChange={e => setSearch(e.target.value)} placeholder='Search for anything'/>

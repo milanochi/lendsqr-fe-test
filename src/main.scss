@@ -160,7 +160,7 @@ body {
 
         .dashboard__nav-left {
             display: flex;
-            width: 337px;
+            width: 330px;
             justify-content: space-between;
             align-items: center;
 
@@ -844,8 +844,10 @@ body {
             }
 
             .dashboard__nav-left {
+
                 .logo {
                     height: 18px;
+                    margin-right: 10px;
                 }
             }
 
