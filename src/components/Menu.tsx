@@ -7,23 +7,26 @@ import { useAppContext } from '../context/AppContext'
 
 const Menu = () => {
   const navigate = useNavigate()
+  const [hide, setHide] = useState(false)
 
   function toSubscriptions() {
+    setHide(true)
     navigate('/subscriptions')
+
   }
 
   function toDashboard() {
     navigate('/dashboard')
   }
   const { subLink } = useAppContext()
-  const [subscriptions, setSubscriptions] = useState('')
+
 
 
 
   return (
     <div>
       {/* LEFT NAVIGATION MENU */}
-      <aside className='menu'>
+      <aside className={`${hide && 'hide'} menu`}>
         <div className='menu__inner' >
           <div className='menu__header'>
             <div className='menu__org' onClick={toDashboard} style={{ textDecoration: 'none', cursor: 'pointer', width: '100%' }}>
@@ -32,9 +35,9 @@ const Menu = () => {
                 <div>Dashboard</div>
               </div>
             </div>
-            <div className='menu__org'>
+            <div className='menu__org' onClick={toSubscriptions} style={{ textDecoration: 'none', cursor: 'pointer', width: '100%' }}>
               <img src={Home} alt='home' />
-              <div onClick={toSubscriptions} style={{ textDecoration: 'none', cursor: 'pointer', width: '100%' }}>
+              <div>
                 <div >
                   <div>Subscriptions</div>
                 </div>
