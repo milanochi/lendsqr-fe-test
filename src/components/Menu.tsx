@@ -6,7 +6,15 @@ import { useState } from 'react'
 import { useAppContext } from '../context/AppContext'
 
 const Menu = () => {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
+
+  function toSubscriptions() {
+    navigate('/subscriptions')
+  }
+
+  function toDashboard() {
+    navigate('/dashboard')
+  }
   const { subLink } = useAppContext()
   const [subscriptions, setSubscriptions] = useState('')
 
@@ -18,18 +26,18 @@ const Menu = () => {
       <aside className='menu'>
         <div className='menu__inner' >
           <div className='menu__header'>
-            <div className='menu__org'>
+            <div className='menu__org' onClick={toDashboard} style={{ textDecoration: 'none', cursor: 'pointer', width: '100%' }}>
               <img src={OrgLeft} alt='briefcase' />
-              <a href='/dashboard' style={{ textDecoration: 'none' }}>
+              <div >
                 <div>Dashboard</div>
-              </a>
+              </div>
             </div>
             <div className='menu__org'>
               <img src={Home} alt='home' />
-              <div style={{ width: '100%' }}>
-                <a href={subLink} style={{ textDecoration: 'none' }}>
+              <div onClick={toSubscriptions} style={{ textDecoration: 'none', cursor: 'pointer', width: '100%' }}>
+                <div >
                   <div>Subscriptions</div>
-                </a>
+                </div>
               </div>
             </div>
           </div>
