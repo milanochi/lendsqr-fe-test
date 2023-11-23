@@ -92,8 +92,10 @@ const Subscriptions = () => {
         getTasks()
     }, [])
 
-    const BASE_URL = import.meta.env.VITE_API_URL
+
     //FETCH USERS
+    const BASE_URL = import.meta.env.VITE_API_URL;
+
     const fetchUsers = async () => {
         setLoading(true)
         try {
@@ -156,7 +158,7 @@ const Subscriptions = () => {
 
     return (
         <>
-            <div className='dashboard'>
+            <div className='dashboard' style={{ overflowX: 'hidden' }}>
                 <NavBar page={'Subscriptions'} />
                 <Menu />
                 <main>

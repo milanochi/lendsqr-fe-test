@@ -6,7 +6,7 @@ import MainDashboard from '../components/MainDashboard'
 const DashBoard = () => {
 
   return (
-    <div className="dashboard">
+    <div className="dashboard" style={{ overflowX: 'hidden' }}>
       <NavBar page={'Dashboard'} />
       <Menu />
       <MainDashboard />

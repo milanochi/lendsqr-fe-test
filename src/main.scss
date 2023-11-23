@@ -164,7 +164,9 @@ body {
         position: fixed;
         width: 100%;
         top: 0;
-        z-index: 100;
+        margin-right: -5rem;
+        z-index: 1000;
+        overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -255,6 +257,7 @@ body {
         width: 250px;
         z-index: 1;
         overflow-y: scroll;
+        overflow-x: hidden;
         padding: 4.5rem 20px;
         box-shadow: none;
 
