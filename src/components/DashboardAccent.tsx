@@ -1,4 +1,3 @@
-import React from 'react'
 import Icon1 from '/src/assets/section/sect-ico1.svg'
 import Icon2 from '/src/assets/section/sect-ico2.svg'
 import Icon3 from '/src/assets/section/sect-ico3.svg'
@@ -19,7 +18,7 @@ const DashboardAccent = () => {
                     <div>
                         <img src={Icon2} alt='icon' />
                         <p>ACTIVE USERS</p>
-                        <h2>40</h2>
+                        <h2>100</h2>
                     </div>
                 </section>
                 <section>

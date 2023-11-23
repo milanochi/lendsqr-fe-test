@@ -11,8 +11,13 @@ interface Paginate {
   setItemOffset: number | any
   handleTotalPage?: (T: any) => void
   add: number[]
+  loading: boolean
 }
-const Pagination = ({ user, pageCount, setItemsPerPage, setItemOffset, add }: Paginate) => {
+const Pagination = ({ user, loading, pageCount, setItemsPerPage, setItemOffset, add }: Paginate) => {
+  //LOADING
+  if (loading && user.length === 0) {
+    return null
+  }
 
   const [value, setValue] = useState(10);
 
@@ -34,6 +39,7 @@ const Pagination = ({ user, pageCount, setItemsPerPage, setItemOffset, add }: Pa
       <div className='paginate' style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', background: 'whitesmoke' }}>
         <section style={{ display: 'flex', fontSize: '14px', color: '#545F7D', lineHeight: '2' }}>
           <p style={{ marginRight: '10px' }}>Showing</p>
+
           <select value={value} onChange={e => setValue(Number(e.currentTarget.value))} style={{ marginRight: '10px', fontFamily: 'Work Sans', borderRadius: '4px', padding: '0 8px', color: '#213F7D', background: 'rgba(33, 63, 125, 0.1', border: 'none', outline: '1px solid $primary-color' }}>
             {
               add.map((num, index) => <option key={index} value={num}
@@ -41,7 +47,7 @@ const Pagination = ({ user, pageCount, setItemsPerPage, setItemOffset, add }: Pa
               >{num}</option>)
             }
           </select>
-          <p>out of {user.length || 10}</p>
+          <p>out of {user.length}</p>
         </section>
         <ReactPaginate
           breakLabel="..."

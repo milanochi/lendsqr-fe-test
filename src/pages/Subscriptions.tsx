@@ -39,6 +39,7 @@ const Subscriptions = () => {
 
     //Doughnut
     const pieLabels = ["Active", "Inactive"];
+
     const pieData = {
         labels: pieLabels,
         datasets: [
@@ -91,11 +92,12 @@ const Subscriptions = () => {
         getTasks()
     }, [])
 
+    const BASE_URL = import.meta.env.VITE_API_URL
     //FETCH USERS
     const fetchUsers = async () => {
         setLoading(true)
         try {
-            const res = await fetch('https://6270020422c706a0ae70b72c.mockapi.io/lendsqr/api/v1/users')
+            const res = await fetch(`${BASE_URL}`)
             if (res.ok) {
                 const data = await res.json()
                 console.log(data)
@@ -115,6 +117,42 @@ const Subscriptions = () => {
         setPageCount(Math.ceil(users.length / itemsPerPage))
 
     }, [itemOffset, itemsPerPage, users])
+
+    const tableHeaders = [
+        {
+            id: 1,
+            heading: 'ORGANIZATION',
+            body: 'orgName'
+        },
+        {
+            id: 2,
+            heading: 'USERNAME',
+            body: 'userName'
+        },
+        {
+            id: 3,
+            heading: 'EMAIL',
+            body: 'email'
+        },
+        {
+            id: 4,
+            heading: 'PHONE NUMBER',
+            body: 'phoneNumber'
+        },
+        {
+            id: 5,
+            heading: 'DATE JOINED',
+            body: 'createdAt'
+        },
+        {
+            id: 6,
+            heading: 'STATUS',
+            body: 'Default'
+        },
+
+
+    ]
+
 
     return (
         <>
@@ -150,9 +188,11 @@ const Subscriptions = () => {
                                 </div>
                             </div>
                         </section>
-                        <Table />
-                        {/* <UserDashboard /> */}
+                        <Table headers={tableHeaders} data={currentItems} loading />
+
+                        <Pagination loading user={users} add={Add} handleTotalPage={handleTotalPage} pageCount={pageCount} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} setItemOffset={setItemOffset} />
                     </div>
+
                 </main>
             </div>
         </>

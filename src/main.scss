@@ -146,6 +146,18 @@ body {
     font-family: Work Sans;
     position: relative;
 
+    .view {
+        background-color: #213F7D;
+        color: white;
+        border-radius: 10px;
+        padding: 8px 12px;
+        font-family: Rubik;
+        border: none;
+        margin-bottom: 1rem;
+        margin-right: 1rem;
+        cursor: pointer;
+    }
+
     nav {
         background-color: white;
         padding: 20px 30px;
@@ -413,14 +425,6 @@ body {
                             td {
                                 font-weight: 400;
                                 font-size: 14px;
-
-                                .dots {
-                                    height: 14px;
-                                    display: flex;
-                                    align-items: flex-end;
-                                    cursor: pointer;
-                                    position: relative;
-                                }
 
                             }
                         }

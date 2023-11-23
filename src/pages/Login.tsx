@@ -62,9 +62,6 @@ const Login = () => {
                                 <label style={{ paddingBottom: '1rem', fontSize: '.8em' }}>Last Name</label>
                                 <input type='text' onChange={handleLastName} style={{ width: '100%', position: 'relative', marginTop: '.6rem' }} required placeholder='Enter Last Name' />
                             </div>
-
-                            {/* <input type={togglePassword} style={{width: '100%', position: 'relative'}} required onChange={e => setPassword(e.target.value)}  value={password} placeholder='Password' />
-                            <p onClick={toggleButton} style={{position : 'absolute',top:'18px', right:'2%', fontWeight:'400', fontSize:'10px', cursor:'pointer'}}>SHOW</p> */}
                         </div>
                         {/* <p>FORGOT PASSWORD?</p> */}
                         <button className='btn' type='submit'>PROCEED</button>
