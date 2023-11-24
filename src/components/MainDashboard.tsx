@@ -7,11 +7,9 @@ const MainDashboard = () => {
         <div>
             <main>
                 <div className='main-inner'>
-                    <h3>Users</h3>
                     <DashboardAccent />
                     <UserDashboard />
                 </div>
-
             </main>
         </div>
     )

@@ -161,10 +161,10 @@ const Subscriptions = () => {
             <div className='dashboard' style={{ overflowX: 'hidden' }}>
                 <NavBar page={'Subscriptions'} />
                 <Menu />
+
                 <main>
                     <div className='main-inner'>
-                        <h3>Users</h3>
-                        <section className='responsive' style={{ justifyContent: 'space-between', display: 'flex', minHeight: '300px', marginTop: '1rem', marginBottom: '1rem' }}>
+                        <section className='responsive' style={{ justifyContent: 'space-between', display: 'flex', minHeight: '300px', marginTop: '1rem', marginBottom: '1rem', width: '100%' }}>
 
                             <div className='bar' style={{ background: 'white', borderRadius: '5px', padding: '15px', marginRight: '12px' }}>
                                 <div style={{ marginBottom: '10px' }}>
@@ -194,8 +194,9 @@ const Subscriptions = () => {
 
                         <Pagination loading user={users} add={Add} handleTotalPage={handleTotalPage} pageCount={pageCount} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} setItemOffset={setItemOffset} />
                     </div>
-
                 </main>
+
+
             </div>
         </>
     )

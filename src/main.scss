@@ -156,9 +156,8 @@ body {
         color: white;
         border-radius: 10px;
         padding: 8px 12px;
-        font-family: Rubik;
+        font-family: Work Sans;
         border: none;
-        margin-right: 1rem;
         cursor: pointer;
     }
 
@@ -321,11 +320,14 @@ body {
 
         .main-inner {
             position: absolute;
-            width: calc(100% - 280px);
+            margin: 0 20px;
+            top: 75px;
             left: 280px;
             min-height: 100vh;
             transition: 0.5s;
-            overflow-x: hidden;
+            overflow-x: auto;
+
+
 
             h3 {
                 padding-top: 3rem;
@@ -333,6 +335,22 @@ body {
                 font-weight: 500;
                 color: #213F7D;
             }
+
+            .responsive {
+
+                .bar {
+                    margin-bottom: 1rem;
+                    width: 500px;
+                }
+
+                .pie {
+                    margin-bottom: 1rem;
+                    width: 500px;
+                }
+
+
+            }
+
 
             //CARDS
             .main-section {
@@ -388,7 +406,7 @@ body {
                 box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
                 min-height: 300px;
                 padding: 8px 15px;
-                margin-right: 1rem;
+
 
                 table {
                     border-collapse: collapse;
@@ -772,22 +790,6 @@ body {
     }
 }
 
-.responsive {
-    margin-right: 2rem;
-
-    .bar {
-        margin-bottom: 1rem;
-        width: 550px
-    }
-
-    .pie {
-        margin-bottom: 1rem;
-        width: 550px
-    }
-
-
-}
-
 @media (max-width: 900px) {
     .menu {
         display: none;
@@ -817,22 +819,6 @@ body {
         }
     }
 
-    .responsive {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 4rem;
-
-        .bar {
-            margin-bottom: 1rem;
-            width: 380px
-        }
-
-        .pie {
-            width: 380px;
-        }
-
-    }
 
     .hide {
 
@@ -881,6 +867,23 @@ body {
             .main-inner {
                 width: 100%;
                 left: 0;
+
+                .responsive {
+                    flex-direction: column;
+                    justify-content: center;
+                    margin-bottom: 4rem;
+
+                    .bar {
+                        margin-bottom: 1rem;
+                        width: 320px;
+                    }
+
+                    .pie {
+                        width: 320px;
+                    }
+
+                }
+
 
                 h3 {
                     margin-left: 5rem;
