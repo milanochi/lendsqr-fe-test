@@ -45,7 +45,7 @@ const Subscriptions = () => {
         datasets: [
             {
                 backgroundColor: ['#4BD3A5', '#B7EDDB'],
-                data: [40, 80],
+                data: [40, 60],
             },
         ],
     };
@@ -180,7 +180,7 @@ const Subscriptions = () => {
                             <div className='pie' style={{ minHeight: '300px', background: 'white', padding: '15px', borderRadius: '5px' }}>
                                 <div>
                                     <p style={{ fontSize: '.9em', fontWeight: '500' }}>Total Subscriptions</p>
-                                    <h4 style={{ fontSize: '1.8rem' }}>70</h4>
+                                    <h4 style={{ fontSize: '1.8rem' }}>100</h4>
                                 </div>
 
                                 <div style={{ height: '240px', marginTop: '-1.2rem' }}>

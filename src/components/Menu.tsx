@@ -4,30 +4,11 @@ import Home from '/src/assets/menu/home.svg'
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { useAppContext } from '../context/AppContext'
-import { FaBorderAll, FaCreditCard, FaTable } from "react-icons/fa";
+import { FaBorderAll, FaCreditCard } from "react-icons/fa";
 
 const Menu = () => {
-  // const navigate = useNavigate()
-  // const [hide, setHide] = useState(false)
-  const [dash, setDash] = useState(false)
-  const [sub, setSub] = useState(false)
 
-  // function toSubscriptions() {
-
-  //   // setHide(true)
-  //   navigate('/subscriptions')
-
-  // }
-
-  // function toDashboard() {
-
-  //   navigate('/dashboard')
-
-  // }
   const { subLink } = useAppContext()
-
-
-
 
   return (
     <div>
@@ -53,10 +34,6 @@ const Menu = () => {
               </div>
             </NavLink>
           </div>
-
-          <ul className='menu__list'>
-
-          </ul>
 
         </div>
       </aside>

@@ -5,7 +5,8 @@ import UserDashboardDisplay from './UserDashboardDisplay'
 import UserFilter from './UserFilter'
 import Filter from '/src/assets/dashboard/Filter.svg'
 import { useNavigate } from 'react-router'
-
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const UserDashboard = () => {
   const navigate = useNavigate()
@@ -68,7 +69,10 @@ const UserDashboard = () => {
 
   //LOADING
   if (loading && currentItems.length === 0) {
-    return <h3 style={{ color: '#213F7D', textAlign: 'center' }}>LOADING...</h3>
+    return <div style={{ color: '#213F7D', textAlign: 'center' }}>
+      <h4>Loading...</h4>
+      <Skeleton count={7} style={{ marginTop: '1rem' }} />
+    </div>
   }
   //SHOW FILTER
   // const showFilter = () => {

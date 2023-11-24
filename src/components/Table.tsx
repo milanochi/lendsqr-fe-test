@@ -1,5 +1,7 @@
 import React from 'react'
 import TableData from './TableData'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 type TableDataType = {
     headers: any[]
@@ -9,7 +11,10 @@ type TableDataType = {
 const Table = ({ headers, data, loading }: TableDataType) => {
     //LOADING
     if (loading && data.length === 0) {
-        return <h3 style={{ color: '#213F7D', textAlign: 'center' }}>LOADING...</h3>
+        return <div style={{ color: '#213F7D', textAlign: 'center' }}>
+            <h4>Loading...</h4>
+            <Skeleton count={10} style={{ marginTop: '1rem' }} />
+        </div>
     }
 
     return (

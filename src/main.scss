@@ -789,7 +789,9 @@ body {
 }
 
 @media (max-width: 900px) {
-
+    .menu {
+        display: none;
+    }
 
     .login {
 
