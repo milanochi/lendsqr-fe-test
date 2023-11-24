@@ -25,7 +25,7 @@ const NavBar = ({ page }: any) => {
             </div>
             <div className="dashboard__nav-right">
                 <div className='dashboard__nav-notify'>
-                    <span style={{ marginRight: '4px' }}>Docs</span>
+                    {/* <span style={{ marginRight: '4px' }}>Docs</span> */}
                     <img src={Bell} alt='bell' />
                 </div>
                 <div className='dashboard__nav-user'>

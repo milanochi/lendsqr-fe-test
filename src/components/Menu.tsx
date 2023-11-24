@@ -1,23 +1,29 @@
 import OrgLeft from '/src/assets/menu/org-left.svg'
 // import Arrow from '/src/assets/menu/org-right.svg'
 import Home from '/src/assets/menu/home.svg'
-import { useNavigate } from 'react-router'
+import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { useAppContext } from '../context/AppContext'
+import { FaBorderAll, FaCreditCard, FaTable } from "react-icons/fa";
 
 const Menu = () => {
-  const navigate = useNavigate()
-  const [hide, setHide] = useState(false)
+  // const navigate = useNavigate()
+  // const [hide, setHide] = useState(false)
+  const [dash, setDash] = useState(false)
+  const [sub, setSub] = useState(false)
 
-  function toSubscriptions() {
-    setHide(true)
-    navigate('/subscriptions')
+  // function toSubscriptions() {
 
-  }
+  //   // setHide(true)
+  //   navigate('/subscriptions')
 
-  function toDashboard() {
-    navigate('/dashboard')
-  }
+  // }
+
+  // function toDashboard() {
+
+  //   navigate('/dashboard')
+
+  // }
   const { subLink } = useAppContext()
 
 
@@ -26,23 +32,26 @@ const Menu = () => {
   return (
     <div>
       {/* LEFT NAVIGATION MENU */}
-      <aside className={`${hide && 'hide'} menu`}>
+      <aside className={`menu`}>
         <div className='menu__inner' >
           <div className='menu__header'>
-            <div className='menu__org' onClick={toDashboard} style={{ textDecoration: 'none', cursor: 'pointer', width: '100%' }}>
-              <img src={OrgLeft} alt='briefcase' />
+
+            <NavLink to='/dashboard' className={`menu__org`} style={{ textDecoration: 'none', cursor: 'pointer', width: '100%' }}>
               <div >
-                <div>Dashboard</div>
+                <div style={{ display: 'flex', alignItems: 'center' }}><FaBorderAll /><span style={{ marginLeft: '.5rem' }}>Dashboard</span></div>
               </div>
-            </div>
-            <div className='menu__org' onClick={toSubscriptions} style={{ textDecoration: 'none', cursor: 'pointer', width: '100%' }}>
-              <img src={Home} alt='home' />
+            </NavLink>
+
+            <NavLink to='/subscriptions' className={`menu__org`} style={{ textDecoration: 'none', cursor: 'pointer', width: '100%' }}>
               <div>
-                <div >
-                  <div>Subscriptions</div>
+
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <FaCreditCard />
+                  <span style={{ marginLeft: '.5rem' }}>Subscriptions</span>
                 </div>
+
               </div>
-            </div>
+            </NavLink>
           </div>
 
           <ul className='menu__list'>

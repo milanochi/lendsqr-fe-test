@@ -111,7 +111,8 @@ const UserDashboard = () => {
 
   return (
     <>
-      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+        <p style={{ fontWeight: '500', color: '#213F7D' }}>Users</p>
         <button onClick={toSubscriptions} type='button' className='view'>View All</button>
       </div>
 
