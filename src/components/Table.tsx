@@ -8,7 +8,7 @@ type TableDataType = {
     headers: any[]
     data: any
     loading: boolean
-    pdf: any
+    pdf?: any
 }
 const Table = ({ headers, data, loading, pdf }: TableDataType) => {
 
