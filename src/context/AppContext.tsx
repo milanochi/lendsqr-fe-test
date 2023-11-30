@@ -8,31 +8,45 @@ export function useAppContext() {
 
 export function AppContextProvider({ children }: any) {
 
+    const [filteredData, setFilteredData] = useState([])
+
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
-    const subLink = '/subscriptions'
+
+    const [username, setUserName] = useState('')
+    const [status, setStatus] = useState('')
+    const [date, setDate] = useState('')
+
 
     useEffect(() => {
-        const storedValue = localStorage.getItem('firstName');
-        if (storedValue) {
-            setFirstName(storedValue);
-        }
+        const storedFirstName = localStorage.getItem('firstName');
+        const storedLastName = localStorage.getItem('lastName');
+        if (storedFirstName) setFirstName(storedFirstName);
+        if (storedLastName) setLastName(storedLastName);
     }, [])
 
-    useEffect(() => {
-        const storedValue = localStorage.getItem('lastName');
-        if (storedValue) {
-            setLastName(storedValue);
-        }
-    }, [])
-
+    // console.log({
+    //     firstName,
+    //     lastName,
+    //     username,
+    //     status,
+    //     date,
+    //     filteredData,
+    // })
     return (
         <AppContext.Provider value={{
-            subLink,
             firstName,
             lastName,
+            username,
+            status,
+            date,
+            filteredData,
+            setFilteredData,
             setFirstName,
             setLastName,
+            setUserName,
+            setStatus,
+            setDate
         }}>
             {
                 children

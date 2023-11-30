@@ -13,25 +13,22 @@ interface Paginate {
   add: number[]
   loading: boolean
 }
-const Pagination = ({ user, loading, pageCount, setItemsPerPage, setItemOffset, add }: Paginate) => {
+const Pagination = ({ user, loading, pageCount, setItemsPerPage, setItemOffset, add, itemsPerPage }: Paginate) => {
   //LOADING
-  if (loading && user.length === 0) {
+  if (loading || !+(user?.length)) {
     return null
   }
 
-  const [value, setValue] = useState(10);
+  const [value, setValue] = useState(itemsPerPage || 10);
 
   // Invoke when user click to request another page.
   const handlePageClick = ({ selected }: any) => {
     setItemOffset(selected);
   };
 
-  function handleDropDownPage() {
-    setItemsPerPage(value)
-  }
   useEffect(() => {
-    handleDropDownPage()
-  }, [value])
+    setItemsPerPage(value)
+  }, [value, setItemsPerPage])
 
 
   return (

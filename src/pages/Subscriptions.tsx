@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react'
-import UserDashboard from '../components/UserDashboard'
+import React, { useEffect, useState, useCallback } from 'react'
 import NavBar from '../components/NavBar'
 import Menu from '../components/Menu'
 import Chart from "chart.js/auto";
@@ -7,163 +6,210 @@ import { CategoryScale } from "chart.js";
 import { Bar, Doughnut } from "react-chartjs-2";
 import Pagination from '../components/Pagination'
 import Table from '../components/Table';
+import Modal from '../components/Modal';
+import { FaFileDownload, FaFilter } from 'react-icons/fa';
+import InputElement from '../components/InputElement';
+import { useAppContext } from '../context/AppContext';
 Chart.register(CategoryScale);
+
+type User = {
+    userName: string;
+    createdAt: string;
+}
+//FETCH USERS
+const BASE_URL = import.meta.env.VITE_API_URL;
+const labels = ["January", "February", "March", "April", "May", "June"];
+const data = {
+    labels: labels,
+    datasets: [
+        {
+            label: "Months",
+            backgroundColor: '#B7EDDB',
+            hoverBackgroundColor: '#4BD3A5',
+            borderRadius: 3,
+            data: [9000, 1000, 5000, 3000, 2000, 5000, 15000],
+        },
+    ],
+};
+const barOptions: any = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            position: 'bottom',
+            labels: {
+                boxWidth: -4
+            }
+        }
+    }
+}
+//Doughnut
+const pieLabels = ["Active", "Inactive"];
+const pieData = {
+    labels: pieLabels,
+    datasets: [
+        {
+            backgroundColor: ['#4BD3A5', '#B7EDDB'],
+            data: [40, 60],
+        },
+    ],
+};
+const pieOptions: any = {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        legend: {
+            position: 'left',
+            labels: {
+                boxWidth: 20,
+                boxHeight: 8,
+                font: {
+                    family: 'Rubik',
+                    size: '14px'
+                }
+            }
+        }
+    }
+}
+const tableHeaders = [
+    {
+        id: 1,
+        heading: 'ORGANIZATION',
+        body: 'orgName'
+    },
+    {
+        id: 2,
+        heading: 'USERNAME',
+        body: 'userName'
+    },
+    {
+        id: 3,
+        heading: 'EMAIL',
+        body: 'email'
+    },
+    {
+        id: 4,
+        heading: 'PHONE NUMBER',
+        body: 'phoneNumber'
+    },
+    {
+        id: 5,
+        heading: 'DATE JOINED',
+        body: 'createdAt'
+    },
+    {
+        id: 6,
+        heading: 'STATUS',
+        body: 'Default'
+    },
+
+
+]
+const fetchUsers = async () => {
+    try {
+        const res = await fetch(`${BASE_URL}`)
+        if (res.ok) {
+            const data = await res.json()
+            return data
+        }
+    }
+    catch (err) {
+        console.log(err)
+    }
+}
+const PerPageOption = [10, 20, 30, 40, 50]
 
 const Subscriptions = () => {
 
-    const labels = ["January", "February", "March", "April", "May", "June"];
-    const data = {
-        labels: labels,
-        datasets: [
-            {
-                label: "Months",
-                backgroundColor: '#B7EDDB',
-                hoverBackgroundColor: '#4BD3A5',
-                borderRadius: 3,
-                data: [9000, 1000, 5000, 3000, 2000, 5000, 15000],
-            },
-        ],
-    };
-    const barOptions: any = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'bottom',
-                labels: {
-                    boxWidth: -4
-                }
-            }
-        }
-    }
+    const [users, setUsers] = useState<User[]>([])
+    const [loading, setLoading] = useState(true)
 
-    //Doughnut
-    const pieLabels = ["Active", "Inactive"];
-
-    const pieData = {
-        labels: pieLabels,
-        datasets: [
-            {
-                backgroundColor: ['#4BD3A5', '#B7EDDB'],
-                data: [40, 60],
-            },
-        ],
-    };
-    const pieOptions: any = {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-            legend: {
-                position: 'left',
-                labels: {
-                    boxWidth: 20,
-                    boxHeight: 8,
-                    font: {
-                        family: 'Rubik',
-                        size: '14px'
-                    }
-                }
-            }
-        }
-    }
-    const [users, setUsers] = useState([])
-    const [loading, setLoading] = useState(false)
-    const [actions, setActions] = useState(false)
-
-    const [currentItems, setCurrentItems] = useState([])
     const [pageCount, setPageCount] = useState(0)
     const [itemOffset, setItemOffset] = useState(0)
-    const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [itemsPerPage, setItemsPerPage] = useState(PerPageOption[0]);
 
-    const [userPerPage, setUserPerPage] = useState([10, 20, 30, 40, 50])
-    const Add = userPerPage.map(add => add)
-    const handleTotalPage = ({ e }: any) => userPerPage[e.target.value]
-
-
+    const { username, status, date, filteredData, setFilteredData } = useAppContext()
+    const [usernameFilter, setUsernameFilter] = useState(username)
+    const [statusFilter, setStatusFilter] = useState(status)
+    const [dateFilter, setDateFilter] = useState(date)
+    const [filteredUsers, setFilteredUsers] = useState<typeof users>([])
 
     useEffect(() => {
-        const getTasks = async () => {
+        const getUsers = async () => {
             const usersFromServer = await fetchUsers()
-            console.log(usersFromServer)
-
             setUsers(usersFromServer)
+            setFilteredUsers(usersFromServer)
             setLoading(false)
         }
-        getTasks()
+        getUsers()
     }, [])
-
-
-    //FETCH USERS
-    const BASE_URL = import.meta.env.VITE_API_URL;
-
-    const fetchUsers = async () => {
-        setLoading(true)
-        try {
-            const res = await fetch(`${BASE_URL}`)
-            if (res.ok) {
-                const data = await res.json()
-                console.log(data)
-                return data
-
-            }
-
-        }
-        catch (err) {
-            console.log(err)
-        }
-    }
-
     useEffect(() => {
         const endOffset = itemOffset + itemsPerPage;
-        setCurrentItems(users.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(users.length / itemsPerPage))
+        setFilteredData(filteredUsers.slice(itemOffset, endOffset));
+        setPageCount(Math.ceil(filteredUsers.length / itemsPerPage))
 
-    }, [itemOffset, itemsPerPage, users])
+    }, [itemOffset, itemsPerPage, filteredUsers])
 
-    const tableHeaders = [
-        {
-            id: 1,
-            heading: 'ORGANIZATION',
-            body: 'orgName'
-        },
-        {
-            id: 2,
-            heading: 'USERNAME',
-            body: 'userName'
-        },
-        {
-            id: 3,
-            heading: 'EMAIL',
-            body: 'email'
-        },
-        {
-            id: 4,
-            heading: 'PHONE NUMBER',
-            body: 'phoneNumber'
-        },
-        {
-            id: 5,
-            heading: 'DATE JOINED',
-            body: 'createdAt'
-        },
-        {
-            id: 6,
-            heading: 'STATUS',
-            body: 'Default'
-        },
+    const [isModalOpen, setModalOpen] = useState(false)
 
+    const handleFilterSubmit = useCallback((e: any) => {
+        e.preventDefault()
+        // if (username === '' || status === '' || date === '') {
+        //     alert('Fill in form data')
+        // }
+        console.log(users)
+        const result = users.filter((row) => {
+            if (row.userName.toLowerCase().includes(usernameFilter.toLowerCase())) {
+                return row
+            }
+        }
+        );
+        console.log(result)
+        setFilteredUsers(result);
+        setModalOpen(false)
 
-    ]
+    }, [usernameFilter, users, setFilteredUsers])
+
+    function clearFilter(e: any) {
+        e.preventDefault()
+        setUsernameFilter('')
+        setModalOpen(false)
+
+    }
 
 
     return (
         <>
             <div className='dashboard' style={{ overflowX: 'hidden' }}>
+                {isModalOpen && (
+                    <Modal onClose={() => setModalOpen(false)} header={'Filter'}>
+
+                        <form onSubmit={handleFilterSubmit}>
+
+                            <div className='modal-children'>
+                                <InputElement value={usernameFilter} element={'input'} name={'username'} type={'text'} label={'Username'} holder={'Enter User Name'} onChange={e => setUsernameFilter(e.target.value)} />
+
+                                <InputElement value={statusFilter} element={'input'} name={'status'} type={'text'} label={'Status'} holder={'Enter Status'} onChange={e => setStatusFilter(e.target.value)} />
+
+                                <InputElement value={dateFilter} element={'input'} name={'date'} type={'date'} label={'Date Joined'} holder={'Enter Date'} onChange={e => setDateFilter(e.target.value)} />
+                            </div>
+                            <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '1rem' }}>
+                                <div>
+                                    <button onClick={clearFilter} className='clear' style={{ marginRight: '10px' }}>Clear</button>
+                                    <button type="submit" className='view'>Filter</button>
+                                </div>
+
+                            </div>
+
+                        </form>
+                    </Modal>
+                )}
                 <NavBar page={'Subscriptions'} />
                 <Menu />
 
                 <main>
                     <div className='main-inner'>
+
                         <section className='responsive' style={{ justifyContent: 'space-between', display: 'flex', minHeight: '300px', marginTop: '1rem', marginBottom: '1rem', width: '100%' }}>
 
                             <div className='bar' style={{ background: 'white', borderRadius: '5px', padding: '15px', marginRight: '12px' }}>
@@ -190,13 +236,24 @@ const Subscriptions = () => {
                                 </div>
                             </div>
                         </section>
-                        <Table headers={tableHeaders} data={currentItems} loading />
+                        <div className='table-header' style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                            <h4 style={{ color: '#545F7D' }}>Clients</h4>
+                            <div>
+                                <button onClick={() => setModalOpen(true)} type='button' className='view' style={{ marginRight: '15px' }}>
+                                    <FaFilter style={{ fontSize: '10px', marginRight: '4px' }} />Filter
+                                </button>
 
-                        <Pagination loading user={users} add={Add} handleTotalPage={handleTotalPage} pageCount={pageCount} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} setItemOffset={setItemOffset} />
+                                <button type='button' className='view'>
+                                    <FaFileDownload style={{ fontSize: '10px', marginRight: '4px' }} />Export
+                                </button>
+                            </div>
+
+                        </div>
+                        <Table headers={tableHeaders} data={filteredData} loading={loading} />
+
+                        <Pagination loading={loading} user={filteredData} add={PerPageOption} pageCount={pageCount} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} setItemOffset={setItemOffset} />
                     </div>
                 </main>
-
-
             </div>
         </>
     )

@@ -1,12 +1,26 @@
 import { useState, useEffect } from 'react'
 import Pagination from './Pagination'
 import Table from './Table'
-import UserDashboardDisplay from './UserDashboardDisplay'
-import UserFilter from './UserFilter'
-import Filter from '/src/assets/dashboard/Filter.svg'
 import { useNavigate } from 'react-router'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+
+//FETCH USERS
+const BASE_URL = import.meta.env.VITE_API_URL
+const fetchUsers = async () => {
+  try {
+    const response = await fetch(`${BASE_URL}`)
+    if (response.ok) {
+      const data = await response.json()
+      console.log(data)
+      return data
+    }
+  }
+  catch (err) {
+    console.error(err)
+  }
+}
+
 
 const UserDashboard = () => {
   const navigate = useNavigate()
@@ -15,50 +29,25 @@ const UserDashboard = () => {
     navigate('/subscriptions')
   }
 
-  const [submit, setSubmit] = useState(false)
-  const [users, setUsers] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [actions, setActions] = useState(false)
-
   const [currentItems, setCurrentItems] = useState([])
+
+  const [users, setUsers] = useState([])
+  const [loading, setLoading] = useState(true)
+
   const [pageCount, setPageCount] = useState(0)
   const [itemOffset, setItemOffset] = useState(0)
   const [itemsPerPage, setItemsPerPage] = useState(5);
 
-  const [userPerPage, setUserPerPage] = useState([10, 20, 30, 40, 50])
-  const Add = userPerPage.map(add => add)
-  const handleTotalPage = ({ e }: any) => userPerPage[e.target.value]
-
-
-
   useEffect(() => {
-    const getTasks = async () => {
+    const getUsers = async () => {
       const usersFromServer = await fetchUsers()
       console.log(usersFromServer)
 
       setUsers(usersFromServer)
       setLoading(false)
     }
-    getTasks()
+    getUsers()
   }, [])
-
-  //FETCH USERS
-  const BASE_URL = import.meta.env.VITE_API_URL
-
-  const fetchUsers = async () => {
-    setLoading(true)
-    try {
-      const response = await fetch(`${BASE_URL}`)
-      if (response.ok) {
-        const data = await response.json()
-        console.log(data)
-        return data
-      }
-    }
-    catch (err) {
-      console.error(err)
-    }
-  }
 
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
@@ -68,16 +57,15 @@ const UserDashboard = () => {
   }, [itemOffset, itemsPerPage, users])
 
   //LOADING
-  if (loading && currentItems.length === 0) {
+  if (loading) {
     return <div style={{ color: '#213F7D', textAlign: 'center' }}>
       <h4>Loading...</h4>
-      <Skeleton count={7} style={{ marginTop: '1rem' }} />
+      <Skeleton count={7} style={{ marginTop: '.9rem', height: '30px' }} />
     </div>
   }
-  //SHOW FILTER
-  // const showFilter = () => {
-  //   setSubmit(!submit)
-  // }
+  if (currentItems.length === 0) {
+    return <h4>No data found</h4>
+  }
   const tableHeaders = [
     {
       id: 1,
@@ -120,10 +108,7 @@ const UserDashboard = () => {
         <button onClick={toSubscriptions} type='button' className='view'>View All</button>
       </div>
 
-      <Table headers={tableHeaders} data={currentItems} loading />
-      {
-        submit && <UserFilter />
-      }
+      <Table headers={tableHeaders} data={currentItems} loading={loading} />
     </>
   )
 }

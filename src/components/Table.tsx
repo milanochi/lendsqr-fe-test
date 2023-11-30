@@ -10,11 +10,14 @@ type TableDataType = {
 }
 const Table = ({ headers, data, loading }: TableDataType) => {
     //LOADING
-    if (loading && data.length === 0) {
+    if (loading) {
         return <div style={{ color: '#213F7D', textAlign: 'center' }}>
             <h4>Loading...</h4>
-            <Skeleton count={10} style={{ marginTop: '1rem' }} />
+            <Skeleton count={10} style={{ marginTop: '.9rem', height: '30px' }} />
         </div>
+    }
+    if (data.length === 0) {
+        return <h4>No data found</h4>
     }
 
     return (
@@ -33,7 +36,7 @@ const Table = ({ headers, data, loading }: TableDataType) => {
                     </thead>
                     <tbody>
                         {
-                            data.map((user: any, index: number) => {
+                            data.map((user: { userName: string }[], index: number) => {
                                 return <TableData users={user} headers={headers} key={index} />
                             })}
                     </tbody>

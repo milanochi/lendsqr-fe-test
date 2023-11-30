@@ -27,6 +27,21 @@ body {
     background-color: rgba(84, 95, 125, 0.116);
 }
 
+.modal-children {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+    margin-top: 1rem;
+
+    input {
+        border-radius: 5px;
+        padding: 8px 10px;
+        border: 1px solid grey;
+        font-family: $primary-font;
+        width: 100%;
+    }
+}
 
 .login {
     width: 100%;
@@ -160,6 +175,18 @@ body {
         border: none;
         cursor: pointer;
     }
+
+    .clear {
+        border: 1px solid #213F7D;
+        color: #213F7D;
+        border-radius: 10px;
+        padding: 8px 12px;
+        font-family: Work Sans;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+    }
+
 
     nav {
         background-color: white;
@@ -406,7 +433,7 @@ body {
                 background-color: white;
                 border-radius: 4px;
                 box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
-                min-height: 300px;
+                min-height: 100px;
                 padding: 8px 15px;
 
 
@@ -793,6 +820,10 @@ body {
 }
 
 @media (max-width: 900px) {
+    .modal-children {
+        grid-template-columns: 1fr;
+    }
+
     .menu {
         display: none;
     }
