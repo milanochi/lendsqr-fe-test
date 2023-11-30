@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import TableData from './TableData'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+
 
 type TableDataType = {
     headers: any[]
     data: any
     loading: boolean
+    pdf: any
 }
-const Table = ({ headers, data, loading }: TableDataType) => {
+const Table = ({ headers, data, loading, pdf }: TableDataType) => {
+
     //LOADING
     if (loading) {
         return <div style={{ color: '#213F7D', textAlign: 'center' }}>
@@ -21,8 +24,8 @@ const Table = ({ headers, data, loading }: TableDataType) => {
     }
 
     return (
-        <div className='info' style={{ marginBottom: '1rem' }}>
-            <div style={{ position: 'relative' }}>
+        <div className='info' style={{ marginBottom: '1rem' }} >
+            <div style={{ position: 'relative' }} ref={pdf}>
                 <table>
                     <thead>
                         <tr>{

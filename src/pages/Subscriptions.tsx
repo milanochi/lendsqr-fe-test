@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import NavBar from '../components/NavBar'
 import Menu from '../components/Menu'
 import Chart from "chart.js/auto";
@@ -10,6 +10,8 @@ import Modal from '../components/Modal';
 import { FaFileDownload, FaFilter } from 'react-icons/fa';
 import InputElement from '../components/InputElement';
 import { useAppContext } from '../context/AppContext';
+import JsPDF, { jsPDF } from 'jspdf';
+import html2canvas from 'html2canvas';
 Chart.register(CategoryScale);
 
 type User = {
@@ -117,6 +119,7 @@ const fetchUsers = async () => {
         console.log(err)
     }
 }
+
 const PerPageOption = [10, 20, 30, 40, 50]
 
 const Subscriptions = () => {
@@ -173,10 +176,28 @@ const Subscriptions = () => {
     function clearFilter(e: any) {
         e.preventDefault()
         setUsernameFilter('')
+        setDateFilter('')
         setModalOpen(false)
 
     }
+    const pdfRef = useRef();
 
+    const downloadPdf = () => {
+        const input: any = pdfRef.current;
+        html2canvas(input).then((canvas) => {
+            const imgData = canvas.toDataURL('image/png');
+            const pdf = new jsPDF('p', 'mm', 'a4', true);
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
+            const imgWidth = canvas.width;
+            const imgHeight = canvas.height;
+            const ratio = Math.min(pdfWidth / imgWidth, pdfHeight / imgHeight);
+            const imgX = (pdfWidth - imgWidth * ratio) / 2;
+            const imgY = 30;
+            pdf.addImage(imgData, 'PNG', imgX, imgY, imgWidth * ratio, imgHeight * ratio);
+            pdf.save('Subscriptions.pdf')
+        })
+    }
 
     return (
         <>
@@ -243,13 +264,13 @@ const Subscriptions = () => {
                                     <FaFilter style={{ fontSize: '10px', marginRight: '4px' }} />Filter
                                 </button>
 
-                                <button type='button' className='view'>
+                                <button type='button' className='view' onClick={downloadPdf}>
                                     <FaFileDownload style={{ fontSize: '10px', marginRight: '4px' }} />Export
                                 </button>
                             </div>
 
                         </div>
-                        <Table headers={tableHeaders} data={filteredData} loading={loading} />
+                        <Table headers={tableHeaders} data={filteredData} loading={loading} pdf={pdfRef} />
 
                         <Pagination loading={loading} user={filteredData} add={PerPageOption} pageCount={pageCount} itemsPerPage={itemsPerPage} setItemsPerPage={setItemsPerPage} setItemOffset={setItemOffset} />
                     </div>
